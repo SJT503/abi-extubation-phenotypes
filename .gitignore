@@ -1,0 +1,22 @@
+# Never commit patient-level data or large intermediates
+*.parquet
+*.csv
+*.rds
+*.h5
+*.h5ad
+*.pkl
+*.zip
+*.gz
+*.tar
+
+# Keep only aggregate/frozen JSON outputs if added later
+!results_frozen/*.json
+
+# Local config
+.env
+config.local.*
+__pycache__/
+*.pyc
+.Rhistory
+.RData
+.ipynb_checkpoints/
