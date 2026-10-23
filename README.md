@@ -19,26 +19,23 @@ Models are fitted independently in each database. Outcomes are never used to def
 
 ## Repository layout
 
-`
+```
 scripts/        Python: cohort assembly, SOFA extraction, comfort-care exclusion, endpoint construction, figure generation
 r_scripts/      R: LCGM fitting (lcmm) and bootstrap stability
-`
+```
 
 ### Pipeline order
 
-1. scripts/55_sofa_traj.py — extract post-extubation daily SOFA (day 0–4), bin by day
-2. scripts/58_clean_traj_final.py — exclude palliative/comfort-directed extubation (WLST adjudication ∪ no-support death proxy)
-3. scripts/58b_clean_traj_model.py, scripts/58c_neuro_daily.py — clean-cohort modelling inputs, neurological daily series
-4. scripts/59b_lcgm_refit_d04.py — LCGM refit on day 0–4 (removes boundary artefact), k = 2–8
-5. 
-_scripts/03b_lcgm_gbtm_fit.R, 
-_scripts/04_m3_carevue_lcgm_k2_8.R — LCGM enumeration (hlme, quadratic time), model selection by BIC / entropy / average posterior probability / minimum class size
-6. 
-_scripts/03d_lcgm_bootstrap_ari.R — 80% resampling stability (adjusted Rand index)
-7. scripts/59c_k5_phenotype.py, scripts/59d_k6_phenotype.py — phenotype characterisation, trajectory figures, individual slope validation
-8. scripts/59_traj_phenotype_desc.py — descriptive tables
-9. scripts/86_suppfig1_flow_v2.py — cohort flow figure (Supplementary Fig. 1, with automated geometry self-check)
-10. scripts/56_traj_adverse_endpoint.py, 56b_two_stage.py, 57_deterioration_v3_full.py — trajectory-based adverse endpoint (sensitivity analyses)
+1. `scripts/55_sofa_traj.py` — extract post-extubation daily SOFA (day 0–4), bin by day
+2. `scripts/58_clean_traj_final.py` — exclude palliative/comfort-directed extubation (WLST adjudication ∪ no-support death proxy)
+3. `scripts/58b_clean_traj_model.py`, `scripts/58c_neuro_daily.py` — clean-cohort modelling inputs, neurological daily series
+4. `scripts/59b_lcgm_refit_d04.py` — LCGM refit on day 0–4 (removes boundary artefact), k = 2–8
+5. `r_scripts/03b_lcgm_gbtm_fit.R`, `r_scripts/04_m3_carevue_lcgm_k2_8.R` — LCGM enumeration (`hlme`, quadratic time, k = 2–8), model selection by BIC / relative entropy / average posterior probability / minimum class size
+6. `r_scripts/03d_lcgm_bootstrap_ari.R` — 80% resampling stability (adjusted Rand index)
+7. `scripts/59c_k5_phenotype.py`, `scripts/59d_k6_phenotype.py` — phenotype characterisation, trajectory figures, individual slope validation
+8. `scripts/59_traj_phenotype_desc.py` — descriptive tables
+9. `scripts/86_suppfig1_flow_v2.py` — cohort flow figure (Supplementary Fig. 1, with automated geometry self-check)
+10. `scripts/56_traj_adverse_endpoint.py`, `56b_two_stage.py`, `57_deterioration_v3_full.py` — trajectory-based adverse endpoint (sensitivity analyses)
 
 ## Data
 
@@ -52,16 +49,16 @@ Under these agreements the authors are not permitted to redistribute patient-lev
 
 ## Requirements
 
-- Python 3.11+ (pandas, numpy, scipy, statsmodels, lifelines, duckdb, matplotlib)
-- R 4.5+ with lcmm
+- Python 3.11+ (`pandas`, `numpy`, `scipy`, `statsmodels`, `lifelines`, `duckdb`, `matplotlib`)
+- R 4.5+ with `lcmm`
 
 ## Reporting
 
-The study is reported according to STROBE. Trajectory model selection follows the recommendations summarised by van de Schoot (2015) and Nagin & Odgers (2010); LCGM implementation uses lcmm (Proust-Lima et al., J Stat Softw 2017;78(2)).
+The study is reported according to STROBE. Trajectory model selection follows the recommendations summarised by van de Schoot (2015) and Nagin & Odgers (2010); LCGM implementation uses `lcmm` (Proust-Lima et al., *J Stat Softw* 2017;78(2)).
 
 ## Licence
 
-Code is released under the MIT Licence (see LICENSE). This licence does not extend to any data obtained from PhysioNet, which remain governed by their respective data use agreements.
+Code is released under the MIT Licence (see `LICENSE`). This licence does not extend to any data obtained from PhysioNet, which remain governed by their respective data use agreements.
 
 ## Contact
 
